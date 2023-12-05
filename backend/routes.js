@@ -49,26 +49,18 @@ router.get('/read-tasks', (req, res) => {
 //Delete All Tasks
 router.delete('/delete-task/:id', (req, res) => {
 
-    var found = false;
     const taskList = JSON.parse(readFileSync(path));
-
-    var newTaskList = []
-    taskList.map((task, key) => {
-        if (task["id"] == req.params.id) {
-            //delete Task
-            res.send("Task Found");
-            found = true;
-        }
-        else {
-            newTaskList.concat(task);
+    taskList.map((task) => {
+        if (req.params.id == task["id"]) {
+            var index = taskList.indexOf(task);
+            taskList.splice(index, 1);
+            console.log(index);
         }
     })
-
-    if (found == false) {
-        res.send("Task Not Found");
-    } else {
-        writeFileSync(path, JSON.stringify(newTaskList), 'utf-8');
-    }
+    writeFileSync(path, JSON.stringify(taskList), 'utf-8');
+    res.status(200).json({
+        "status": "success"
+    });
 })
 
 
