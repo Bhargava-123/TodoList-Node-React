@@ -1,0 +1,187 @@
+body{
+  margin: 0;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+header{
+  text-align: center;
+  background-color: antiquewhite;
+  border-radius: 15px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+}
+h1{
+  margin: 0;
+}
+.container{
+  background-color: rgb(237, 184, 184);
+  width: 97.2vw;
+  height: 84vh;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+}
+.taskListContainer{
+  width: 40vw;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+.taskContainer{
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+}
+.taskNameContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+.checkBox{
+  flex-grow: 1;
+  margin: 0px;
+  height: 15px;
+  width: 15px;
+}
+.taskName{
+  margin-top: -3px;
+  flex-grow: 20;
+  font-size: 20px;
+  font-weight: 700;
+}
+.deleteLogo{
+  height: 25px;
+  width: 25px;
+}
+.taskDescContainer{
+  padding-left: 36px;
+  font-weight: 300;
+  margin: 0;
+}
+hr{
+  margin: 0;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.emptyMessage{
+  text-align: center;
+  font-size: medium;
+  font-weight: 500;
+}
+.addButtonContainer{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  background-color: rgb(249, 130, 130);
+  height: 35px;
+  width: 40vw;
+  padding-bottom: 4px;
+  border-radius: 25px;
+}
+.addButtonContainer:hover{
+  background-color: white;
+  color: red;
+}
+.popupContainer{
+  display: flex;
+  margin: auto;
+  position: relative;
+  margin-top: -80vh;
+  height: 50vh;
+  width: 42vw;
+  background-color: rgb(255, 130, 130);
+  border-radius: 15px;
+  outline: 0;
+  box-shadow: 0px 0px 100vh 100vh #00000088;
+}
+.modelBody{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 20px;
+
+}
+.modelTextInput{
+  height: 25px;
+  width: 400px;
+  border: 0;
+  border-radius: 25px;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 18px;
+}
+.textArea{
+  height: 100px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+.modelFooter{
+  margin-top: 20px;
+}
+.modelHeader{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  background-color: red;
+  justify-content: center;
+
+}
+.modelDummyHeader{
+  flex-grow: 80;
+}
+.modelTitle{
+  flex-grow: 52;
+  margin-bottom: 30px;
+  font-size: 25px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  /* flex-grow: 1;
+  display: flex;
+  justify-content: center; */
+}
+
+.modelFooter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modelCloseButton{
+  flex-grow: 8;
+  cursor: pointer;
+  padding-top: 10px;
+  padding-left: 40px;
+  height: 15px;
+  width: 15px;
+}
+.modelButton{
+  cursor: pointer;
+  border: 0;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border-radius: 25px;
+  font-weight: 600;
+  background-color: rgb(255, 85, 85);
+  box-shadow: 2px 2px 2px black;
+}
+.modelButton:active{
+  background-color: rgb(255, 85, 85);
+  box-shadow: 0px 0px 0px black;
+}
