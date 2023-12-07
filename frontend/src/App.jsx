@@ -4,6 +4,10 @@ import deleteLogo from './assets/delete.png';
 import closeLogo from './assets/close.svg';
 import { Modal, Button, Form } from "react-bootstrap";
 
+//TODO:  1. Add New Task Empty TaskName and TaskDesc
+//2. Deleting One Task deletes all with the same name
+//3. removing Striked Out TaskName doesn't work when UnChecked
+
 
 function App() {
   const URL = "http://localhost:8000";
@@ -19,23 +23,27 @@ function App() {
   var handleAdd = () => {
     fetch(URL + "/create-task", {
       method: "POST",
-      body: {
-        "taskName": "asdfasdf",
-        "taskDesc": "asdfasdf",
-      }
-    }).then((res) => console.log(res.json())).then((data) => console.log(data)); 
+      headers: {
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify({
+        "taskName": taskName,
+        "taskDesc": taskDesc
+      })
+    }).then((res) => res.json()).then((data) => setTaskList(data)); 
   }
 
-  var handleCheck = (event,key) => {
+  var handleCheck = (event, key) => {
+
     if (event.target.checked) {
-      checkedList.push(key);
-      setCheckList([...checkedList,key]);
+      checkedList = checkedList.concat([key]);
+      setCheckList(checkedList);
     }
     else {
       checkedList.splice(key, 1);
-      console.log(checkedList);
       setCheckList(checkedList);
     }
+    console.log(checkedList);
   }
 
   var handleDelete = (event, value) => {
@@ -90,7 +98,6 @@ function App() {
             taskList.map((value, key) => {
               return (
                 <div className="taskContainer" key={key}>
-                  
                   <div className="taskNameContainer">
                     <input type="checkbox" className='checkBox' name="" id="" onChange={event => handleCheck(event, key)} key={key} />
                     <TaskName isChecked={checkedList.includes(key)} value={value}></TaskName>
@@ -125,7 +132,7 @@ function App() {
           </>
         </Modal.Body>
         <Modal.Footer className='modelFooter'>
-          <Button variant="secondary" className="modelButton" onClick={() => handleAdd()}>Add Task</Button>
+          <Button variant="secondary" className="modelButton" onClick={() => { handleAdd(); setShow(false) }}>Add Task</Button>
         </Modal.Footer>
       </Modal>
     </>

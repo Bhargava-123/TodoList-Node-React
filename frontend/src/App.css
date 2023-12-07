@@ -95,7 +95,7 @@ hr{
   display: flex;
   margin: auto;
   position: relative;
-  margin-top: -80vh;
+  margin-top: -75vh;
   height: 50vh;
   width: 42vw;
   background-color: rgb(255, 130, 130);
@@ -135,7 +135,8 @@ hr{
   border-top-right-radius: 15px;
   display: flex;
   flex-direction: row;
-  background-color: red;
+  background-color: rgb(97, 0, 0);
+  color: white;
   justify-content: center;
 
 }

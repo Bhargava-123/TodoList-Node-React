@@ -6,6 +6,7 @@ const router = require('express').Router();
 //create Task
 router.post("/create-task", (req, res) => {
 
+    console.log(req.body);
     //read the existing tasks
     const data = readFileSync(path);
     oldTaskList = JSON.parse(data);
@@ -25,18 +26,20 @@ router.post("/create-task", (req, res) => {
     //add new task to the existing json Object
     const newTaskList = oldTaskList.concat(newTask);
     //update new task list to the json file
+
     try {
         writeFileSync(path, JSON.stringify(newTaskList), 'utf-8');
-        res.status(200).json(newTask);
+        const taskList = JSON.parse(readFileSync(path));
+        res.status(200).json(taskList);
     }
     catch (error) {
         res.status(400).json(
             {
                 "message": error.message,
             }
-           
         )
     }
+    //send updates TaskList in return
     
 });
 
@@ -57,6 +60,7 @@ router.delete('/delete-task/:id', (req, res) => {
             console.log(index);
         }
     })
+
     writeFileSync(path, JSON.stringify(taskList), 'utf-8');
     res.status(200).json({
         "status": "success"
