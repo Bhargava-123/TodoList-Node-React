@@ -36,9 +36,7 @@ h1{
   border-radius: 15px;
   padding: 10px;
 }
-.taskContainer:hover{
-  background-color: rgba(128, 128, 128, 0.334);
-}
+
 .taskNameContainer{
   display: flex;
   flex-direction: row;

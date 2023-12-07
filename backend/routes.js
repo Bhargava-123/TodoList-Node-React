@@ -40,7 +40,6 @@ router.post("/create-task", (req, res) => {
         )
     }
     //send updates TaskList in return
-    
 });
 
 //Read All Tasks
@@ -62,6 +61,28 @@ router.delete('/delete-task/:id', (req, res) => {
     })
     writeFileSync(path, JSON.stringify(taskList), 'utf-8');
     res.status(200).json(taskList);
+})
+
+router.get('/set-complete/:id', (req, res) => {
+    console.log(req.params.id);
+    var id = req.params.id;
+    const taskList = JSON.parse(readFileSync(path));
+    var newTaskList = taskList;
+    newTaskList.map((value) => {
+        if (value['id'] == id) {
+            if (value['isCompleted'] == false) {
+                value['isCompleted'] = true;
+            }
+            else {
+                value['isCompleted'] = false;
+            }
+            
+        }
+    })
+    writeFileSync(path, JSON.stringify(newTaskList), 'utf-8');
+    res.status(200).json(newTaskList);
+
+
 })
 
 

@@ -33,19 +33,9 @@ function App() {
     }).then((res) => res.json()).then((data) => setTaskList(data)); 
   }
 
-  var handleCheck = (event, key) => {
-    if (event.target.checked) {
-      setCheckedList([...checkedList, key]);
-    }
-    else {
-      setCheckedList(checkedList.filter((ele) => {
-        if (ele != key) {
-          console.log(ele);
-          return ele;
-        }
-      }));   
-    }
-    console.log(checkedList);
+  var handleCheck = (value) => {
+    fetch(URL + `/set-complete/${value['id']}`)
+      .then((res) => res.json()).then((data) => setTaskList(data));
   }
 
   var handleDelete = (event, value) => {
@@ -91,11 +81,10 @@ function App() {
               return (
                 <div className="taskContainer" key={key}>
                   <div className="taskNameContainer">
-                    <input type="checkbox" className='checkBox' name="" id="" onChange={(event) => handleCheck(event, key)} key={key} />
+                    <input type="checkbox" className='checkBox' name="" id="" checked={value['isCompleted']} onClick={() => handleCheck(value)} key={key} />
                     {
-                      checkedList.includes(key) ? <div className='taskName'>Striked</div> : <div className='taskName'>NotStriked</div>
+                      !value['isCompleted'] ? <div className="taskName">{value['taskName']}</div> : <strike className="taskName">{value['taskName']}</strike>
                     }
-                    {/* <TaskName isChecked={checkedList.includes(key)} value={value}></TaskName> */}
                     <img src={deleteLogo} className='deleteLogo' alt="" onClick={event => handleDelete(event,value)} />
                   </div>
                   <hr className='hr'/>
