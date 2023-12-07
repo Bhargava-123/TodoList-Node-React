@@ -60,11 +60,8 @@ router.delete('/delete-task/:id', (req, res) => {
             console.log(index);
         }
     })
-
     writeFileSync(path, JSON.stringify(taskList), 'utf-8');
-    res.status(200).json({
-        "status": "success"
-    });
+    res.status(200).json(taskList);
 })
 
 

@@ -15,7 +15,7 @@ h1{
   margin: 0;
 }
 .container{
-  background-color: rgb(237, 184, 184);
+  background-image: url("./assets/background.jpg");
   width: 97.2vw;
   height: 84vh;
   padding: 10px;
@@ -36,12 +36,14 @@ h1{
   border-radius: 15px;
   padding: 10px;
 }
+.taskContainer:hover{
+  background-color: rgba(128, 128, 128, 0.334);
+}
 .taskNameContainer{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
 }
 .checkBox{
   flex-grow: 1;
@@ -64,10 +66,11 @@ h1{
   font-weight: 300;
   margin: 0;
 }
-hr{
+.hr{
   margin: 0;
-  margin-bottom: 5px;
-  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border: 0.1px solid black;
 }
 .emptyMessage{
   text-align: center;

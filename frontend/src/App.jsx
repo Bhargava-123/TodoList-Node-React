@@ -12,7 +12,7 @@ import { Modal, Button, Form } from "react-bootstrap";
 function App() {
   const URL = "http://localhost:8000";
   var [taskList, setTaskList] = useState([]);
-  var [checkedList, setCheckList] = useState([]);
+  var [checkedList, setCheckedList] = useState([]);
 
   var [taskName, setTaskName] = useState("");
   var [taskDesc, setTaskDesc] = useState("");
@@ -34,38 +34,30 @@ function App() {
   }
 
   var handleCheck = (event, key) => {
-
     if (event.target.checked) {
-      checkedList = checkedList.concat([key]);
-      setCheckList(checkedList);
+      setCheckedList([...checkedList, key]);
     }
     else {
-      checkedList.splice(key, 1);
-      setCheckList(checkedList);
+      setCheckedList(checkedList.filter((ele) => {
+        if (ele != key) {
+          console.log(ele);
+          return ele;
+        }
+      }));   
     }
     console.log(checkedList);
   }
 
   var handleDelete = (event, value) => {
-    var newTaskList = [];
-    var idToBeDeleted;
-    taskList.map((task) => {
-      //check if ever element in current taskList is not equal to selected task
-      if (task['taskName'] != value['taskName']) {
-        newTaskList = [...newTaskList, task];
-      } 
-      else {
-        idToBeDeleted = value["id"];
-      }
-    })
-
-    fetch(URL + `/delete-task/${idToBeDeleted}`, {method: "DELETE",})
-
-    setTaskList(newTaskList);
+    var idToBeDeleted = value["id"];
+    fetch(URL + `/delete-task/${idToBeDeleted}`, { method: "DELETE", })
+      .then((res) => res.json()).then((data) => setTaskList(data));
+    // setTaskList(newTaskList);
   }
   var TaskName =
     (props) => {
-    if (props.isChecked) {
+      if (props.isChecked) {
+        console.log(checkedList);
       return <strike className="taskName">{ props.value['taskName'] }</strike>
     }
     else {
@@ -99,11 +91,14 @@ function App() {
               return (
                 <div className="taskContainer" key={key}>
                   <div className="taskNameContainer">
-                    <input type="checkbox" className='checkBox' name="" id="" onChange={event => handleCheck(event, key)} key={key} />
-                    <TaskName isChecked={checkedList.includes(key)} value={value}></TaskName>
+                    <input type="checkbox" className='checkBox' name="" id="" onChange={(event) => handleCheck(event, key)} key={key} />
+                    {
+                      checkedList.includes(key) ? <div className='taskName'>Striked</div> : <div className='taskName'>NotStriked</div>
+                    }
+                    {/* <TaskName isChecked={checkedList.includes(key)} value={value}></TaskName> */}
                     <img src={deleteLogo} className='deleteLogo' alt="" onClick={event => handleDelete(event,value)} />
                   </div>
-                  <hr />
+                  <hr className='hr'/>
                   <div className="taskDescContainer">
                     <div className="taskDesc">{ value['taskDesc'] }</div>
                   </div>
@@ -132,7 +127,7 @@ function App() {
           </>
         </Modal.Body>
         <Modal.Footer className='modelFooter'>
-          <Button variant="secondary" className="modelButton" onClick={() => { handleAdd(); setShow(false) }}>Add Task</Button>
+          <Button variant="secondary" className="modelButton" onClick={() => { handleAdd(); setShow(false ) }}>Add Task</Button>
         </Modal.Footer>
       </Modal>
     </>
