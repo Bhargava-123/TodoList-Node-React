@@ -17,3 +17,5 @@ app.use('/', apiRoutes);
 app.listen(PORT, () => {
     console.log("App Started");
 })  
+
+module.exports = app;
