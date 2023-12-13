@@ -63,6 +63,10 @@ router.delete('/delete-task/:id', (req, res) => {
     res.status(200).json(taskList);
 })
 
+router.get('', (req, res) => {
+    res.send("YOU CAME EARLY!")
+})
+
 router.get('/set-complete/:id', (req, res) => {
     console.log(req.params.id);
     var id = req.params.id;

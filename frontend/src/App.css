@@ -4,7 +4,8 @@ body{
 }
 header{
   text-align: center;
-  background-color: #FFC857;
+  background-color:  #255F85;
+  color: white;
   border-radius: 15px;
   margin-top: 10px;
   margin-left: 10px;
@@ -16,9 +17,9 @@ h1{
   margin: 0;
 }
 .container{
-  background-color: #255F85;
+  background-color: #FFC857;
   width: 97.2vw;
-  height: 84vh;
+  height: 85vh;
   padding: 10px;
   margin: 10px;
   border-radius: 15px;
@@ -45,6 +46,7 @@ h1{
   align-items: center;
 }
 .checkBox{
+  cursor: pointer;
   flex-grow: 1;
   margin: 0px;
   height: 15px;
@@ -57,12 +59,14 @@ h1{
   font-weight: 700;
 }
 .deleteLogo{
+  cursor: pointer;
   height: 25px;
   width: 25px;
 }
 .taskDescContainer{
   padding-left: 36px;
-  font-weight: 300;
+  font-weight: 400;
+  font-style: oblique;
   margin: 0;
 }
 .hr{
