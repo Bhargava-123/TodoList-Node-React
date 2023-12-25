@@ -1,5 +1,5 @@
 const { readFileSync, writeFileSync } = require('fs');
-const path = './data.json';
+const path = '/data/data.json';
 const router = require('express').Router();
 
 
